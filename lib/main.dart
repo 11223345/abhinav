@@ -1,25 +1,13 @@
 import 'package:flutter/material.dart';
+import 'Homepage.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(My());
 }
 
-class MyApp extends StatelessWidget {
+class My extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: Material(
-          child: Center(
-              child: Text(
-            "Hello",
-            textScaleFactor: 4,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          )),
-        ));
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomePage());
   }
 }
-grokrirgr
-rr,irgrmrrigrgr
-    rgrgtigtth
-thtkottotkhot,hhh

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
   @override
-  Widget build(BuildContext) {
+  Widget build(buildcontext) {
 
     return Scaffold(
       appBar: AppBar(title: Text('Catalogue App'),),
@@ -13,7 +13,7 @@ class HomePage extends StatelessWidget {
         textScaleFactor: 4,
         style: TextStyle(fontWeight: FontWeight.bold),
       )),
-      drawer: Drawer() ,
+      //drawer: Drawer() ,
     );
   }
 }

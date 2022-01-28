@@ -3,10 +3,11 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:untitled/Pages/LoginPage.dart';
 import 'Homepage.dart';
 
+import 'Pages/Routes.dart';
+
 void main() {
   runApp(My());
 }
-
 
 class My extends StatelessWidget {
   @override
@@ -17,12 +18,10 @@ class My extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.deepPurple,
             fontFamily: GoogleFonts.lato().fontFamily),
-
-
         routes: {
           "/": (context) => LoginPage(),
-          "/Home": (context) => HomePage(),
-          "/login": (context) => LoginPage()
+          Routes.homeRoute: (context) => HomePage(),
+          Routes.loginRoute: (context) => LoginPage()
         });
   }
 }

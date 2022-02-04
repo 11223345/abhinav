@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changebutton = false;
+  String hello = "Aman";
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +44,13 @@ class _LoginPageState extends State<LoginPage> {
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
                       hintText: "Enter username", labelText: "Username"),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Username cannot be empty";
+                    }
+
+                    return null;
+                  },
                   onChanged: (value) {
                     name = value;
                     setState(() {});
@@ -68,31 +76,25 @@ class _LoginPageState extends State<LoginPage> {
                   child: AnimatedContainer(
                     duration: Duration(seconds: 1),
                     decoration: BoxDecoration(
-                        
-                        borderRadius: BorderRadius.circular(changebutton? 50: 8),
+                        borderRadius:
+                            BorderRadius.circular(changebutton ? 50 : 8),
                         color: Colors.deepPurple),
 
                     alignment: Alignment.center,
                     //color: Colors.deepPurple,
                     height: 50,
                     width: changebutton ? 50 : 150,
-                    child: changebutton? Icon(Icons.done) : Text(
-                      'Login',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 19,
-                          color: Colors.white),
-                    ),
+                    child: changebutton
+                        ? Icon(Icons.done)
+                        : Text(
+                            'Login',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 19,
+                                color: Colors.white),
+                          ),
                   ),
                 ),
-                /*ElevatedButton(
-                    onPressed: () {
-                      Navigator.pushNamed(context, Routes.homeRoute);
-                    },
-                    child: Text(
-                      "Login",
-                    ),
-                    style: TextButton.styleFrom(minimumSize: Size(150, 50))),*/
               ],
             ),
           ),

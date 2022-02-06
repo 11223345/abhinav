@@ -11,9 +11,23 @@ class _LoginPageState extends State<LoginPage> {
   String name = "";
   bool changebutton = false;
   String hello = "Aman";
+  final _formkey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
+    movetohome(buildcontext) async {
+      if (_formkey.currentState!.validate()|| _formkey.currentState!.validate()) {
+        setState(() {
+          changebutton = true;
+        });
+        await Future.delayed(Duration(seconds: 1));
+        await Navigator.pushNamed(context, Routes.homeRoute);
+        setState(() {
+          changebutton = false;
+        });
+      }
+    }
+
     return Material(
         child: SingleChildScrollView(
       child: Column(
@@ -30,8 +44,9 @@ class _LoginPageState extends State<LoginPage> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-            child: Column(
-              children: [
+            child: Form(
+              key: _formkey,
+              child: Column(children: [
                 Text(
                   "Welcome $name",
                   style: TextStyle(
@@ -48,8 +63,12 @@ class _LoginPageState extends State<LoginPage> {
                     if (value!.isEmpty) {
                       return "Username cannot be empty";
                     }
-
-                    return null;
+                    else if (value.length< 6){
+                      return "Username cannot be less than 6 letters ";
+                    }
+                    else{
+                      return null;
+                    }
                   },
                   onChanged: (value) {
                     name = value;
@@ -61,41 +80,44 @@ class _LoginPageState extends State<LoginPage> {
                   obscureText: true,
                   decoration: InputDecoration(
                       hintText: "Enter Password", labelText: "Password"),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Password cannot be empty";
+                    }
+                    else{
+                      return null;
+                    }
+                  },
                 ),
                 SizedBox(
                   height: 40,
                 ),
-                InkWell(
-                  onTap: () async {
-                    setState(() {
-                      changebutton = true;
-                    });
-                    await Future.delayed(Duration(seconds: 2));
-                    Navigator.pushNamed(context, Routes.homeRoute);
-                  },
-                  child: AnimatedContainer(
-                    duration: Duration(seconds: 1),
-                    decoration: BoxDecoration(
-                        borderRadius:
-                            BorderRadius.circular(changebutton ? 50 : 8),
-                        color: Colors.deepPurple),
+                Material(
+                  borderRadius: BorderRadius.circular(changebutton ? 50 : 8),
+                  color: Colors.deepPurple,
+                  child: InkWell(
+                    splashColor: Colors.white,
+                    onTap: () => movetohome(context),
+                    child: AnimatedContainer(
+                      duration: Duration(seconds: 1),
 
-                    alignment: Alignment.center,
-                    //color: Colors.deepPurple,
-                    height: 50,
-                    width: changebutton ? 50 : 150,
-                    child: changebutton
-                        ? Icon(Icons.done)
-                        : Text(
-                            'Login',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 19,
-                                color: Colors.white),
-                          ),
+                      alignment: Alignment.center,
+                      //color: Colors.deepPurple,
+                      height: 50,
+                      width: changebutton ? 50 : 150,
+                      child: changebutton
+                          ? Icon(Icons.done)
+                          : Text(
+                              'Login',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 19,
+                                  color: Colors.white),
+                            ),
+                    ),
                   ),
-                ),
-              ],
+                )
+              ]),
             ),
           ),
         ],

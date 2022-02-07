@@ -19,7 +19,7 @@ class My extends StatelessWidget {
             primarySwatch: Colors.deepPurple,
             fontFamily: GoogleFonts.lato().fontFamily),
         routes: {
-          "/": (context) => LoginPage(),
+          "/": (context) => HomePage(),
           Routes.homeRoute: (context) => HomePage(),
           Routes.loginRoute: (context) => LoginPage()
         });
